@@ -1,0 +1,39 @@
+<div class="col-lg-12">
+	<div class="card">
+		<div class="card-header">
+			<strong class="card-title">groups</strong>            
+			<span class="pull-right">
+                <form action="/group/add">
+                    <input class="btn btn-sm btn-success" type="submit" value="Add group" />
+                </form>
+            </span>
+			
+		</div>
+		<div class="card-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">Group</th>
+						<th scope="col">Gate</th>
+						<th scope="col">action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each groups}}
+					<tr>
+						<th scope="row">{{this.gu_id}}</th>
+						<td>{{this.gu_name}}</td>
+						<td>{{this.ga_name}}</td>
+						<td>
+							<form action="/group/delete/{{this.gu_id}}">
+								<input class="btn btn-sm btn-danger" type="submit" value="delete" />
+							</form>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

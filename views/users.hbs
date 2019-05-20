@@ -1,0 +1,41 @@
+<div class="col-lg-12">
+	<div class="card">
+		<div class="card-header">
+			<strong class="card-title">Users</strong>            
+			<span class="pull-right">
+                <form action="/users/add">
+                    <input class="btn btn-sm btn-success" type="submit" value="Add User" />
+                </form>
+            </span>
+			
+		</div>
+		<div class="card-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">NRP</th>
+						<th scope="col">Password</th>
+						<th scope="col">Group</th>
+						<th scope="col">action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each user}}
+					<tr>
+						<th scope="row">{{this.m_id}}</th>
+						<td>{{this.m_nrp}}</td>
+						<td>{{this.m_pass}}</td>
+						<td>{{this.m_grub}}</td>						
+						<td>
+							<form action="/users/delete/{{this.m_id}}">
+								<input class="btn btn-sm btn-danger" type="submit" value="delete" />
+							</form>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
