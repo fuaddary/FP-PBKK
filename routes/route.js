@@ -2,6 +2,11 @@ var express = require('express')
 var router = express.Router()
 var controller = require('../controller/controller.js')
 
+//index
+
+router.route('/')
+  .get(controller.index)
+
 //user
 
 router.route('/users')
@@ -56,5 +61,6 @@ router.route('/login/:ga_id')
 
 router.route('/login')
   .post(controller.login);
+
 
 module.exports=router;

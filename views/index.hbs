@@ -37,29 +37,22 @@
                         <h1 style="color:white"><strong>{{gate.ga_name}}</strong></h1>
                     </a>
                 </div>
-                <div class="login-form">
-                    <form action="/login" method="POST">
-                        <div class="form-group">
-                        <label for=" ">nrp:</label>
-                        <input type="text" placeholder="5116100xxx" name="RegUsername" class="form-control" value="05111640000000">
-                        </div>
-                        <div class="form-group">
-                        <label for="pwd">group:</label>
-                        <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="group" value="admin">
-                        </div>
-                        <div class="form-group">
-                        <div class="form-group">
-                        <label for="pwd">password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="RegPassword" value="asdf">
-                        </div>
+                <div>
+                    {{#each gates}}
+                    <a href="/login/{{this.ga_id}}">
+                    <div class="card" style="width: 100%; margin: 10px">
+                    <div class="card-body">
+                        <h2 class="card-title" style="text-align : center">{{this.ga_name}}</h2>
+                        <h4 class="card-subtitle mb-2 text-muted">Buka : {{this.ga_start}}</h4>
+                        <h4 class="card-subtitle mb-2 text-muted">Tutup : {{this.ga_end}}</h4>
+                        {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a> --}}
+                    </div>
+                    </div>
+                    </a>
 
-                        <input type="hidden" name="gate" value="{{gate.ga_name}}">
-                        <input type="hidden" name="id" value="{{gate.ga_id}}">
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
-                        <div style="text-align : center; color:red; padding-top: 20px">
-                            {{error}}
-                        </div>
-                    </form>
+                    {{/each}}
                 </div>
             </div>
         </div>

@@ -172,18 +172,46 @@ exports.getlogin = (req,res)=> {
 }
 
 exports.login = (req,res)=> {
-    id = req.params.ga_id
-    Request.get("http://209.97.167.184/gates/"+id, (error, data) => {
+    id=req.body.id
+    RegUsername = req.body.RegUsername
+    group = req.body.group
+    gate = req.body.gate
+    RegPassword = req.body.RegPassword
+    response = {
+        ga_id : id,
+        ga_name : gate
+    }
+    Request.post("http://209.97.167.184/",{form:{RegUsername:RegUsername,group:group,gate:gate,RegPassword:RegPassword}}, (error, data) => {
     if(error) {
         return console.dir(error);
     }
-        gates = JSON.parse(data.body)
-        array = gates.values
-
-        if (array[0] != undefined)
-            res.render('login',{gate:array[0]})
-        else
-            res.render('error')
-        // res.render('group', {layout:'base', groups : groups.values});
+        try {
+            status = JSON.parse(data.body).status
+            res.render('masuk',{gate:gate})
+        }
+        catch{
+            console.log('not allowed')
+            res.render('login',{gate:response,error:"User not allowed"})
+        }
+        // if (status == "add complete"){
+        //     console.log("sukses login")
+        //     //res.render('login',{gate:array[0]})
+        //     res.render('masuk',{gate:gate})
+        // }
+        // else
+        //     res.render('error')
+        // // res.render('group', {layout:'base', groups : groups.values});
     });
+}
+
+exports.index = (req,res)=>{
+    Request.get("http://209.97.167.184/gates", (error, data) => {
+        if(error) {
+            return console.dir(error);
+        }
+            gates = JSON.parse(data.body)
+            console.log(gates.values)
+            res.render('index', {gates : gates.values});
+            
+        });
 }
